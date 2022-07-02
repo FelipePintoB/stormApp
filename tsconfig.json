@@ -21,7 +21,15 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@env/*": ["src/environments/*"],
+      "@core/*": ["src/app/core/*"],
+      "@weather-home/*": ["src/app/weather-home/*"],
+      "@weather-place/*": ["src/app/weather-place/*"],
+      "@weather-search/*": ["src/app/weather-search/*"],
+      "@shared/*": ["src/app/shared/*"],
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
