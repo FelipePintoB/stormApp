@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { WeatherSearchRoutingModule } from './weather-search-routing.module';
 import { WeatherSearchComponent } from './components/weather-search/weather-search.component';
+import { SharedPrimeModule } from "@core/shared-prime/shared-prime.module";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { WeatherSearchComponent } from './components/weather-search/weather-sear
   ],
   imports: [
     CommonModule,
-    WeatherSearchRoutingModule
+    WeatherSearchRoutingModule,
+    SharedPrimeModule
   ]
 })
 export class WeatherSearchModule { }

@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { SideNavBarComponent } from "./components/side-nav-bar/side-nav-bar.component";
 
@@ -12,7 +11,6 @@ import { SharedPrimeModule } from "./shared-prime/shared-prime.module";
 
 @NgModule({
   declarations: [
-    PageNotFoundComponent,
     MainHeaderComponent,
     SideNavBarComponent
   ],

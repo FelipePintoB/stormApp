@@ -7,6 +7,10 @@ const routes: Routes = [
     path: "",
     component: WeatherSearchComponent,
   },
+  {
+    path: "**",
+    redirectTo: ""
+  }
 ];
 
 @NgModule({
