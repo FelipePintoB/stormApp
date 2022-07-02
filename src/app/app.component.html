@@ -1,8 +1,16 @@
-<h2>Angular Routing Example</h2>
-<a [routerLink] = "['/']" >weather</a> <br/>
-<a [routerLink] = "['/weather-place']" >weather-place</a><br/>
-<a [routerLink] = "['/weather-search']" >weather-search</a><br/>
-<a [routerLink] = "['/asdfasdf']" >Page Not found 1</a><br/>
-<a [routerLink] = "['/weather-place/fdasdfasdf']" >Page Not found 2</a><br/>
-<a [routerLink] = "['/weather-search/fasdfasdf']" >Page Not found 3</a><br/>
-<router-outlet></router-outlet>
+<p-panel >
+  <ng-template pTemplate="header" >
+    <section class="header-container">
+      <app-main-header></app-main-header>
+    </section>
+  </ng-template>
+  <section class="body-container">
+    <app-side-nav-bar></app-side-nav-bar>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+  <!-- <ng-template pTemplate="footer">
+      Footer content here
+  </ng-template> -->
+</p-panel>
