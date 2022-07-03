@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { AngularFireModule } from "@angular/fire/compat";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from "@core/core.module";
+import { environment } from '@env/environment';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { CoreModule } from "@core/core.module";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

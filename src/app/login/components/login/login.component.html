@@ -1,0 +1,25 @@
+<section class="main-container">
+  <div class="login-img-container">
+    <img src="../../../../assets/Icons/login.png" alt="login icon">
+    <h2>Login</h2>
+  </div>
+  <div *ngIf="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
+      <label for="user-email" class="block">Email</label>
+      <input id="user-email" formControlName="email" type="email" pInputText placeholder="Email">
+      <p>Password</p>
+      <p-password placeholder="password" formControlName="password" [toggleMask]="true"></p-password>
+      <div class="login-button-container">
+        <div class="loading-spinner-container">
+          <i *ngIf="showSpinner" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        </div>
+        <button *ngIf="!showSpinner" pButton pRipple type="submit" label="Log in"
+        class="p-button-outlined" [disabled]="loginForm.invalid"></button>
+      </div>
+    </form>
+  </div>
+  <div class="login-options-container">
+    <p>Don't you have an account? <a routerLink="/login/register">Sign up</a></p>
+    <p>Did you forget your password? <a routerLink="/login/password-recover">Recover password</a></p>
+  </div>
+</section>

@@ -3,6 +3,14 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: "",
+    redirectTo: "login", pathMatch: "full"
+  },
+  {
+    path: "login",
+    loadChildren: () => import("./login/login.module").then(m => m.LoginModule),
+  },
+  {
     path: "weather-search",
     loadChildren: () => import("./weather-search/weather-search.module").then(m => m.WeatherSearchModule),
   },
@@ -12,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "weather-search",
+    redirectTo: "login",
   }
 ];
 

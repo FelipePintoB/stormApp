@@ -31,5 +31,9 @@
       <p class="weather-info-content">{{current?.humidity}} %</p>
     </div>
   </section>
-  <p>Last update: {{current?.last_updated | date: 'medium'}}</p>
+  <section class="favorite-button-container">
+    <button pButton pRipple type="submit" label="Add to Favorite" (click)="addFavorite()"
+    class="p-button-outlined" [disabled]="false"></button>
+  </section>
+  <p class="last-update">Last update: {{current?.last_updated | date: 'medium'}}</p>
 </p-fieldset>

@@ -20,7 +20,10 @@ export class WeatherSearchComponent implements OnInit {
 
   searchForm: FormGroup | null = null;
 
-  errorMessage: string = "";
+  errorMessage = "";
+  lastSearch = "";
+
+  showSpinner = false;
 
   constructor(private weatherService: WeatherService,
               private messageService: MessageService,
@@ -38,24 +41,37 @@ export class WeatherSearchComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.weatherService.getLocationWeather(this.searchForm?.value.searchValue).subscribe({
-      next: (data) => {
-        console.log(data)
-        this.currentWeather = data;
-        this.location = this.currentWeather.location;
-        this.current = this.currentWeather.current;
-      },
-      error: (error) => {
-        console.error(error)
-        if (error.status >= 400) {
-          this.showError("No matching location found.");
-        }
-      },
-    });
+    const currentSearch = this.searchForm?.value.searchValue;
+    if (this.lastSearch !== currentSearch) {
+      this.lastSearch = currentSearch;
+      this.showSpinner = true;
+      this.weatherService.getLocationWeather(currentSearch).subscribe({
+        next: (data) => {
+          console.log(data)
+          this.currentWeather = data;
+          this.location = this.currentWeather.location;
+          this.current = this.currentWeather.current;
+          this.showSpinner = false;
+        },
+        error: (error) => {
+          console.error(error)
+          if (error.status >= 400) {
+            this.showError("No matching location found.");
+          }
+          this.showSpinner = false;
+        },
+      });
+    } else {
+      this.showInfoMessage();
+    }
   }
 
   get currentSeach() {
     return this.searchForm?.get("searchValue");
+  }
+
+  showInfoMessage() {
+    this.messageService.add({severity:'info', summary: 'Info', detail: 'Please search a new City'});
   }
 
   showError(errorMessage: string) {
@@ -72,8 +88,15 @@ export class WeatherSearchComponent implements OnInit {
 
   clearForm() {
     this.currentSeach?.setValue("");
-    this.currentSeach?.markAsPristine()
-    this.currentSeach?.markAsUntouched()
+    this.currentSeach?.markAsPristine();
+    this.currentSeach?.markAsUntouched();
+    this.location = null;
+    this.current = null;
+  }
+
+  toastFavorite(name: string): void {
+    const mesage = `${name} has been added to favorites`
+    this.messageService.add({severity:'success', summary: 'Success', detail: mesage});
   }
 
 }

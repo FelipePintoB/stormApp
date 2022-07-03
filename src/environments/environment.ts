@@ -6,6 +6,14 @@ export const environment = {
   production: false,
   baseUrl: "https://api.weatherapi.com/v1",
   key: "dc4efa8acd144b57bd705825220207",
+  firebaseConfig: {
+    apiKey: "AIzaSyBGz1pZHuNzliQUfyFSu90J_GecOwKhm1o",
+    authDomain: "stormapp-d8a60.firebaseapp.com",
+    projectId: "stormapp-d8a60",
+    storageBucket: "stormapp-d8a60.appspot.com",
+    messagingSenderId: "441181056561",
+    appId: "1:441181056561:web:276af760bba51ddfc3af10"
+  }
 };
 
 /*

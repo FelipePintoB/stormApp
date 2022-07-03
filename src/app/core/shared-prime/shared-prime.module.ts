@@ -8,6 +8,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [],
@@ -19,7 +20,8 @@ import { ToastModule } from 'primeng/toast';
     FieldsetModule,
     InputTextModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   exports: [
     ButtonModule,
@@ -28,7 +30,8 @@ import { ToastModule } from 'primeng/toast';
     FieldsetModule,
     InputTextModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ]
 })
 export class SharedPrimeModule { }

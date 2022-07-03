@@ -24,30 +24,33 @@
   }
 }
 
+.input-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  .search-bar-conainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .main-container {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: auto;
 }
 
-.error-message, .success-message {
+.error-message {
   display: flex;
   flex-direction: row;
   align-content: center;
   justify-content: center;
   align-items: center;
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
-.success-message {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  margin-left: 5%;
-  // opacity: 0;
-  &.activeMessage {
-    opacity: 1;
-}
+.loading-spinner-container {
+  margin: 0 5%;
 }
