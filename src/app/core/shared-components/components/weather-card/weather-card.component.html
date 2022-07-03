@@ -1,0 +1,35 @@
+<p-fieldset legend="{{location?.name}}">
+  <section class="location-info-container">
+    <div class="location-temp-info">
+      <p class="temp-info">{{current?.temp_c}}°C</p>
+      <p class="feel-like-info">Feel Like: {{current?.feelslike_c}} °C</p>
+      <p class="weather-info">{{current?.condition?.text}}</p>
+    </div>
+    <div class="location-extra-info">
+      <img src="{{current?.condition?.icon}}" alt="{{current?.condition?.text}}">
+      <p class="time-zone-info"> Local Time: {{location?.localtime | date: 'medium'}}</p>
+    </div>
+    <div class="location-text-info">
+      <p class="location-info">
+        {{location?.name}},
+        {{location?.region}},
+        {{location?.country}}
+      </p>
+    </div>
+  </section>
+  <section class="weather-info-container">
+    <div class="uv-index">
+      <p class="weather-info-tittle">UV Index</p>
+      <p class="weather-info-content">{{current?.uv}}</p>
+    </div>
+    <div class="wind-speed">
+      <p class="weather-info-tittle">Wind Speed</p>
+      <p class="weather-info-content">{{current?.wind_kph}} km/h</p>
+    </div>
+    <div class="humidity">
+      <p class="weather-info-tittle">Humidity</p>
+      <p class="weather-info-content">{{current?.humidity}} %</p>
+    </div>
+  </section>
+  <p>Last update: {{current?.last_updated | date: 'medium'}}</p>
+</p-fieldset>

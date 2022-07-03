@@ -14,8 +14,8 @@ export class SideNavBarComponent implements OnInit {
 
   ngOnInit() {
       this.items = [
-        {label: 'Search', icon: 'pi pi-fw pi-refresh', routerLink: "/weather-search"},
-        {label: 'Favorites', icon: 'pi pi-fw pi-download', routerLink: "/favorite-weather"},
+        {label: 'Search', icon: 'pi pi-search', routerLink: "/weather-search"},
+        {label: 'Favorites', icon: 'pi pi-heart-fill', routerLink: "/favorite-weather"},
       ];
   }
 }
