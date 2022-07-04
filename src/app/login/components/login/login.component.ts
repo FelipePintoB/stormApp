@@ -4,6 +4,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 
 import { MessageService } from 'primeng/api';
+import { LoginService } from "@core/services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private angularFireAuth: AngularFireAuth,
+              private loginService: LoginService,
               private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -35,6 +37,11 @@ export class LoginComponent implements OnInit {
         Validators.maxLength(25)
       ]],
     });
+    this.setInitInfo();
+  }
+
+  private setInitInfo(): void {
+    this.loginService.setUserName("");
     this.angularFireAuth.signOut();
   }
 

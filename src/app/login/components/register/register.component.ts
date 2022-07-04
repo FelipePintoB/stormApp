@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 
+import { MyValidators } from "@core/utils/validators";
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -34,12 +35,16 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(25)
       ]],
-      passwordSecond:  [ "", [
+      confirmPassword:  [ "", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(25)
       ]],
-    });
+    },
+    {
+      validators: MyValidators.matchPasswords
+    }
+    );
   }
 
   register(): void {
