@@ -31,9 +31,13 @@
       <p class="weather-info-content">{{current?.humidity}} %</p>
     </div>
   </section>
-  <section class="favorite-button-container">
+  <section *ngIf="!isFavorite" class="favorite-button-container">
     <button pButton pRipple type="submit" label="Add to Favorite" (click)="addFavorite()"
-    class="p-button-outlined" [disabled]="false"></button>
+    class="p-button-outlined" [disabled]="disableButton"></button>
+  </section>
+  <section *ngIf="isFavorite" class="favorite-button-container">
+    <button pButton pRipple type="submit" label="Remove Favorite" (click)="removeFavorite()"
+    class="p-button-outlined p-button-danger" [disabled]="disableButton"></button>
   </section>
   <p class="last-update">Last update: {{current?.last_updated | date: 'medium'}}</p>
 </p-fieldset>

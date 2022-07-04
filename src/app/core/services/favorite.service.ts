@@ -18,4 +18,8 @@ export class FavoriteService {
     return this.firestoreService.getFavoriteArray();
   }
 
+  removeFavoriteCity(id: string) {
+    this.firestoreService.deleteDoc(id);
+  }
+
 }

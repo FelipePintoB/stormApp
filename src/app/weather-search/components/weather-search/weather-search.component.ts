@@ -52,7 +52,7 @@ export class WeatherSearchComponent implements OnInit, OnDestroy {
     this.userNameSubscription?.unsubscribe();
   }
 
-  onSubmit(): void {
+  getWeather(): void {
     const currentSearch = this.searchForm?.value.searchValue;
     if (this.lastSearch !== currentSearch) {
       this.lastSearch = currentSearch;

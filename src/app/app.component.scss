@@ -9,6 +9,6 @@
   display: grid;
   grid-template-columns: 1fr 7fr;
   grid-template-rows: 1fr;
-  height: 87vh;
   gap: 2%;
+  min-height: 90vh;
 }

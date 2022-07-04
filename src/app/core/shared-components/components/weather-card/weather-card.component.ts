@@ -10,7 +10,10 @@ export class WeatherCardComponent implements OnInit {
 
   @Input() location: WeatherLocation | null = null;
   @Input() current: CurrentWeather | null = null;
+  @Input() isFavorite: boolean = false;
   @Output() favorite = new EventEmitter<string>();
+
+  disableButton = false;
 
   constructor() { }
 
@@ -18,9 +21,13 @@ export class WeatherCardComponent implements OnInit {
   }
 
   addFavorite(): void {
-    console.log("Se añade")
-    console.log(this.current)
-    this.favorite.emit(this.location?.name)
+    this.disableButton = true;
+    this.favorite.emit(this.location?.name);
+  }
+
+  removeFavorite(): void {
+    this.disableButton = true;
+    this.favorite.emit(this.location?.name);
   }
 
 }

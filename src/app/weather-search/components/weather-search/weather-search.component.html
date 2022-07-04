@@ -1,47 +1,49 @@
-<section>
-  <h3 *ngIf="userName">
-    Wellcome {{userName}}
-  </h3>
-  <h4>
-    For weather information, please text the city name that you want.
-  </h4>
+<section class="main-container">
+  <section>
+    <h3 *ngIf="userName">
+      Wellcome {{userName}}
+    </h3>
+    <h4>
+      For weather information, please text the city name that you want.
+    </h4>
+  </section>
+  <div *ngIf="searchForm" class="search-bar-container">
+    <form [formGroup]="searchForm" (ngSubmit)="getWeather()" class="form-container">
+      <div class="input-container">
+        <div class="search-bar-conainer">
+          <label for="city-name" class="block">City Name</label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input id="city-name" formControlName="searchValue" type="text" pInputText placeholder="Search">
+          </span>
+        </div>
+        <div class="error-message">
+          <i *ngIf="currentSeach?.hasError('minlength') && currentSeach?.dirty"
+          class="pi pi-info-circle" pTooltip="Min Length allwed"></i>
+          <i *ngIf="currentSeach?.hasError('maxlength') && currentSeach?.dirty"
+          class="pi pi-info-circle" pTooltip="Max Length allwed"></i>
+          <i *ngIf="currentSeach?.hasError('pattern') && currentSeach?.dirty"
+          class="pi pi-info-circle" pTooltip="Search must to be only letters"></i>
+          <i *ngIf="!currentSeach?.dirty" class="pi pi-check-square" pTooltip="Type a City name in the search input"></i>
+          <i *ngIf="!currentSeach?.errors" class="pi pi-check-square" pTooltip="Submit for search"></i>
+        </div>
+      </div>
+      <div class="buttons-form">
+        <div class="loading-spinner-container">
+          <i *ngIf="showSpinner" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        </div>
+        <button *ngIf="!showSpinner" pButton pRipple type="submit" label="Submit"
+        class="p-button-outlined" [disabled]="searchForm.invalid"></button>
+        <button pButton pRipple type="button" label="Clear" class="p-button-outlined p-button-success"
+        (click)="clearForm()"></button>
+      </div>
+    </form>
+  </div>
+  <div class="card-container" *ngIf="location && current">
+    <app-weather-card
+    [current]="current"
+    [location]="location"
+    (favorite)="addFavorite($event)"></app-weather-card>
+  </div>
+  <p-toast></p-toast>
 </section>
-<div *ngIf="searchForm" class="search-bar-container">
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form-container">
-    <div class="input-container">
-      <div class="search-bar-conainer">
-        <label for="city-name" class="block">City Name</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input id="city-name" formControlName="searchValue" type="text" pInputText placeholder="Search">
-        </span>
-      </div>
-      <div class="error-message">
-        <i *ngIf="currentSeach?.hasError('minlength') && currentSeach?.dirty"
-        class="pi pi-info-circle" pTooltip="Min Length allwed"></i>
-        <i *ngIf="currentSeach?.hasError('maxlength') && currentSeach?.dirty"
-        class="pi pi-info-circle" pTooltip="Max Length allwed"></i>
-        <i *ngIf="currentSeach?.hasError('pattern') && currentSeach?.dirty"
-        class="pi pi-info-circle" pTooltip="Search must to be only letters"></i>
-        <i *ngIf="!currentSeach?.dirty" class="pi pi-check-square" pTooltip="Type a City name in the search input"></i>
-        <i *ngIf="!currentSeach?.errors" class="pi pi-check-square" pTooltip="Submit for search"></i>
-      </div>
-    </div>
-    <div class="buttons-form">
-      <div class="loading-spinner-container">
-        <i *ngIf="showSpinner" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-      </div>
-      <button *ngIf="!showSpinner" pButton pRipple type="submit" label="Submit"
-      class="p-button-outlined" [disabled]="searchForm.invalid"></button>
-      <button pButton pRipple type="button" label="Clear" class="p-button-outlined p-button-success"
-      (click)="clearForm()"></button>
-    </div>
-  </form>
-</div>
-<div class="main-container" *ngIf="location && current">
-  <app-weather-card
-  [current]="current"
-  [location]="location"
-  (favorite)="addFavorite($event)"></app-weather-card>
-</div>
-<p-toast></p-toast>

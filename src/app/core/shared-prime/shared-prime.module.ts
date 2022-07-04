@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { PasswordModule } from 'primeng/password';
     InputTextModule,
     TooltipModule,
     ToastModule,
-    PasswordModule
+    PasswordModule,
+    ScrollPanelModule
   ],
   exports: [
     ButtonModule,
@@ -31,7 +33,8 @@ import { PasswordModule } from 'primeng/password';
     InputTextModule,
     TooltipModule,
     ToastModule,
-    PasswordModule
+    PasswordModule,
+    ScrollPanelModule
   ]
 })
 export class SharedPrimeModule { }

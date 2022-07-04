@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Firestore, collection, doc,
-  setDoc, query, where, onSnapshot
+  setDoc, query, where, onSnapshot, deleteDoc
 } from '@angular/fire/firestore';
 
 import { Favorite } from "@core/interfaces/favorite";
@@ -59,6 +59,11 @@ export class FirestoreService {
 
   getFavoriteArray(): BehaviorSubject<Favorite[]> {
     return this.favoriteArray;
+  }
+
+  deleteDoc(id: string) {
+    const docRef = doc(this.firestore, "Favorites",id);
+    deleteDoc(docRef);
   }
 
 }

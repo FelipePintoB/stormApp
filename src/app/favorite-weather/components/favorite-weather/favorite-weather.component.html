@@ -1,1 +1,7 @@
-<p>favorite-weather works!</p>
+<div class="card-container" *ngIf="showFavorites">
+  <app-weather-card *ngFor="let weather of weatherArray; index as i; first as isFirst"
+  [isFavorite]="true"
+  [current]="weather.current"
+  [location]="weather.location"
+  (favorite)="removeFavorite($event)"></app-weather-card>
+</div>
