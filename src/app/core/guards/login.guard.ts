@@ -18,17 +18,15 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.angularFireAuth.currentUser.then((user) => {
-        if (user?.email && user.emailVerified) {
-          this.loginService.setUserName(user.email);
-          return true;
-        } else {
-          this.router.navigate(["/login"]);
-          return false;
-        }
-      }).catch(() => {
+      const session = this.loginService.getSesionStatus();
+      if (session.status === "Active" && session.user && session.password) {
+        this.angularFireAuth.signInWithEmailAndPassword(session.user, session.password);
+        this.loginService.setUserName(session.user);
+        return true;
+      } else {
+        this.router.navigate(["/login"]);
         return false;
-      });
+      }
   }
 
 }

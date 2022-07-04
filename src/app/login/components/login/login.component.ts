@@ -43,19 +43,20 @@ export class LoginComponent implements OnInit {
   private setInitInfo(): void {
     this.loginService.setUserName("");
     this.angularFireAuth.signOut();
+    this.loginService.closeSesionStatus();
   }
 
   login(): void {
     const email = this.loginForm?.value.email;
     const password = this.loginForm?.value.password;
     this.showSpinner = true;
-    this.angularFireAuth.signInWithEmailAndPassword(email,password).then((data) => {
-      console.log(data)
+    this.angularFireAuth.signInWithEmailAndPassword(email,password).then( (data) => {
       if(data.user?.emailVerified) {
         this.toastRegisterSucces(email);
+        this.loginService.setSesionStatus("Active",email,password);
         setTimeout(() => {
           this.router.navigate(["/weather-search"])
-        }, 3000);
+        }, 1500);
       } else {
         this.showInfoMessage(email);
         setTimeout(() => {

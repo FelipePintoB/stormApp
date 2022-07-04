@@ -6,7 +6,7 @@ import { LoginGuard } from "@core/guards/login.guard";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "login", pathMatch: "full"
+    redirectTo: "weather-search", pathMatch: "full"
   },
   {
     path: "login",
