@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 import { CurrentWeather, CurrentWeatherResponse, WeatherLocation } from '@core/interfaces/weather';
 import { WeatherService } from "@core/services/weather.service";
 import { LoginService } from "@core/services/login.service";
+import { FavoriteService } from "@core/services/favorite.service";
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -31,7 +30,7 @@ export class WeatherSearchComponent implements OnInit, OnDestroy {
 
   constructor(private weatherService: WeatherService,
               private loginService: LoginService,
-              private router: Router,
+              private favoriteService: FavoriteService,
               private messageService: MessageService,
               private formBuilder: FormBuilder) { }
 
@@ -46,7 +45,7 @@ export class WeatherSearchComponent implements OnInit, OnDestroy {
     });
     this.userNameSubscription = this.loginService.userName.subscribe({
       next: (name) => { this.userName = name},
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -107,7 +106,12 @@ export class WeatherSearchComponent implements OnInit, OnDestroy {
     this.current = null;
   }
 
-  toastFavorite(name: string): void {
+  addFavorite(city: string): void {
+    this.favoriteService.addFavoriteCity(this.userName, city);
+    this.toastFavorite(city);
+  }
+
+  private toastFavorite(name: string): void {
     const mesage = `${name} has been added to favorites`
     this.messageService.add({severity:'success', summary: 'Success', detail: mesage});
   }
