@@ -16,6 +16,7 @@ export class SideNavBarComponent implements OnInit {
       this.items = [
         {label: 'Search', icon: 'pi pi-search', routerLink: "/weather-search"},
         {label: 'Favorites', icon: 'pi pi-heart-fill', routerLink: "/favorite-weather"},
+        {label: 'Sign out', icon: 'pi pi-sign-out', routerLink: "/login"}
       ];
   }
 }

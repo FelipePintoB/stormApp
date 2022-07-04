@@ -4,7 +4,7 @@
     <h2>Register</h2>
   </div>
   <div *ngIf="registerForm">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-container">
       <label for="user-email" class="block">Email</label>
       <input id="user-email" formControlName="email" type="email" pInputText placeholder="Email">
       <p>Password</p>
@@ -23,3 +23,4 @@
     <a routerLink="/login">Go back</a>
   </div>
 </section>
+<p-toast></p-toast>

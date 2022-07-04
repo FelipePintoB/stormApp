@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 import { CurrentWeather, CurrentWeatherResponse, WeatherLocation } from '@core/interfaces/weather';
 import { WeatherService } from "@core/services/weather.service";
+import { LoginService } from "@core/services/login.service";
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weather-search',
@@ -11,21 +15,23 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./weather-search.component.scss'],
   providers: [MessageService]
 })
-export class WeatherSearchComponent implements OnInit {
+export class WeatherSearchComponent implements OnInit, OnDestroy {
 
   currentWeather: CurrentWeatherResponse | null = null;
-
   location: WeatherLocation | null = null;
   current: CurrentWeather | null = null;
-
   searchForm: FormGroup | null = null;
+  userNameSubscription: Subscription | null = null;
 
   errorMessage = "";
   lastSearch = "";
+  userName = "";
 
   showSpinner = false;
 
   constructor(private weatherService: WeatherService,
+              private loginService: LoginService,
+              private router: Router,
               private messageService: MessageService,
               private formBuilder: FormBuilder) { }
 
@@ -38,6 +44,13 @@ export class WeatherSearchComponent implements OnInit {
         Validators.maxLength(25)
       ] ],
     });
+    this.userNameSubscription = this.loginService.userName.subscribe({
+      next: (name) => { this.userName = name},
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.userNameSubscription?.unsubscribe();
   }
 
   onSubmit(): void {

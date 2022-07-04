@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { LoginGuard } from "@core/guards/login.guard";
+
 const routes: Routes = [
   {
     path: "",
@@ -12,10 +14,12 @@ const routes: Routes = [
   },
   {
     path: "weather-search",
+    canActivate: [LoginGuard],
     loadChildren: () => import("./weather-search/weather-search.module").then(m => m.WeatherSearchModule),
   },
   {
     path: "favorite-weather",
+    canActivate: [LoginGuard],
     loadChildren: () => import("./favorite-weather/favorite-weather.module").then(m => m.FavoriteWeatherModule),
   },
   {
