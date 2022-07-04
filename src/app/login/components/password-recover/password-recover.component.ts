@@ -41,7 +41,6 @@ export class PasswordRecoverComponent implements OnInit {
         this.showSpinner = false;
       }, 5000);
     }).catch((error) => {
-      console.error(error);
       this.recoveryError(error.code);
       this.showSpinner = false;
     })

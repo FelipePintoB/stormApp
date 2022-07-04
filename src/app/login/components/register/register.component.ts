@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    console.log(this.registerForm?.value)
     const email = this.registerForm?.value.email;
     const password = this.registerForm?.value.password;
     this.showSpinner = true;
@@ -56,7 +55,6 @@ export class RegisterComponent implements OnInit {
       this.toastRegisterSucces(email);
       this.sendVerification();
     }).catch(error => {
-      console.error(error);
       this.authError(error.code);
       this.showSpinner = false;
     });
@@ -86,7 +84,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(["/login"]);
       }, 2000);
     }).catch(error => {
-      console.error(error);
       this.toastError("Error on verification");
       this.showSpinner = false;
     })

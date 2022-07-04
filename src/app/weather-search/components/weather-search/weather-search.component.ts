@@ -59,14 +59,12 @@ export class WeatherSearchComponent implements OnInit, OnDestroy {
       this.showSpinner = true;
       this.weatherService.getLocationWeather(currentSearch).subscribe({
         next: (data) => {
-          console.log(data)
           this.currentWeather = data;
           this.location = this.currentWeather.location;
           this.current = this.currentWeather.current;
           this.showSpinner = false;
         },
         error: (error) => {
-          console.error(error)
           if (error.status >= 400) {
             this.showError("No matching location found.");
           }

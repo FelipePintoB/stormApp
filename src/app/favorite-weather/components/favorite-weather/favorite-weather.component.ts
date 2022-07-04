@@ -47,7 +47,6 @@ export class FavoriteWeatherComponent implements OnInit {
     this.favoriteSubs = this.favoriteService.getAllFavorites(this.userName).subscribe({
       next: (data) => {
         this.favoriteArray = [...data];
-        console.log(this.favoriteArray)
         this.setWeatherArrayInfo();
       }
     });
@@ -64,7 +63,6 @@ export class FavoriteWeatherComponent implements OnInit {
         }
       }
     }
-    console.log(this.weatherArray)
     this.showFavorites = true;
   }
 
@@ -75,7 +73,6 @@ export class FavoriteWeatherComponent implements OnInit {
           resolve(data);
         },
         error: (error) => {
-          console.error(error);
           rejects(null);
         },
       });
@@ -84,7 +81,6 @@ export class FavoriteWeatherComponent implements OnInit {
 
   removeFavorite(city: string): void {
     const favorite = this.favoriteArray.find(favorite => favorite.city === city);
-    console.log(favorite)
     if (favorite) {
       this.favoriteService.removeFavoriteCity(favorite?.id);
       const index = this.weatherArray.findIndex(w => w.location.name === city);

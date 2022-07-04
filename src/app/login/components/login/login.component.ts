@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
         }, 300);
       }
     }).catch((error) => {
-      console.error(error);
       this.loginError(error.code);
       this.showSpinner = false;
     })

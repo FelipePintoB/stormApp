@@ -25,9 +25,7 @@ export class FirestoreService {
       const docRef = doc(this.firestore, "Favorites",id);
       const docData = {user, city}
       await setDoc(docRef,docData);
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   }
 
   private generateDocId(user: string, city: string): string {
